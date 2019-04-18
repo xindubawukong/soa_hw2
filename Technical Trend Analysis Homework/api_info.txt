@@ -1,0 +1,32 @@
+https: //apiv2.aminer.cn/magic?a=getTrend__trend.GenTrend___
+Method: POST
+data:
+[
+{
+"action": "trend.GenTrend",
+"parameters": {
+"query": "人工智能", // 查询的词
+"size": 11, // 此处默认
+"searchType": "all", // 此处默认
+"advquery": { // 需要更改，可省略 
+"texts": [{
+"source": "start_year",
+"text": "2000" // 开始年份，需要更改，可省略
+}, {
+"source": "end_year",
+"text": "2010" // 结束年份，需要更改，可省略
+},{
+"source": "isReload",
+"text": "false" // 是否刷新缓存，需要更改，可省略
+}]
+}
+},
+"schema": {
+"person": [
+"id", // 此处默认
+"name", // 此处默认
+"profile.org" // 此处默认
+]
+}
+}
+]
