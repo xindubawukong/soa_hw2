@@ -5,8 +5,18 @@
       <el-button type="primary">人工智能</el-button>
       <el-button type="primary">计算机视觉</el-button>
       <el-button type="primary">自然语言处理</el-button>
-      <p>{{keyword}}</p>
     </el-row>
+    <el-row>
+      <el-col :span="4">
+        <h2>关键词热榜</h2>
+      </el-col>
+    </el-row>
+    <el-container style="height:600px">
+      <el-aside>
+          <p v-for="item in list" style="text-align: left; margin-bottom: -10px">{{item}}</p>
+      </el-aside>
+    </el-container>
+    <p>{{list}}</p>
   </div>
 </template>
 
@@ -17,19 +27,21 @@
     name: "main",
     data() {
       return {
-        keyword: 'asdasdasd',
+        keyword: '大数据',
+        list: 'qweqwe'
       }
     },
     methods: {
       prepare() {
         let url = '/api/getlist';
         let data = {
-          'keyword': this.keyword
+          'keyword': this.keyword,
         };
-        this.$http.post(url, JSON.stringify(data), {emulateJSON:true}).then(function(res){
-          this.keyword = 'success';
+        this.$http.post(url, data, {emulateJSON:true}).then(function(res){
+          this.list = res.body;
+          console.log('post done');
         },function(res){
-          this.keyword = 'fail';
+          this.list = 'fail';
         });
       }
     }
