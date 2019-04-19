@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/getlist', views.getlist)
+    url(r'^api/getlist', views.getlist),
+    url(r'^api/getfig1', views.getfig1),
 ]

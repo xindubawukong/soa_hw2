@@ -15,6 +15,9 @@
       <el-aside>
           <p v-for="item in list" style="text-align: left; margin-bottom: -10px">{{item}}</p>
       </el-aside>
+      <el-main>
+        <img src="/api/getfig1" alt="找不到图片">
+      </el-main>
     </el-container>
     <p>{{list}}</p>
   </div>
@@ -28,7 +31,7 @@
     data() {
       return {
         keyword: '大数据',
-        list: 'qweqwe'
+        list: ''
       }
     },
     methods: {
@@ -37,13 +40,16 @@
         let data = {
           'keyword': this.keyword,
         };
-        this.$http.post(url, data, {emulateJSON:true}).then(function(res){
+        this.$http.post(url, data, {emulateJSON: true}).then(function (res) {
           this.list = res.body;
           console.log('post done');
-        },function(res){
+        }, function (res) {
           this.list = 'fail';
         });
-      }
+      },
+    },
+    created() {
+      this.prepare();
     }
   }
 

@@ -17,12 +17,12 @@ def get_trend_data(field):
 
 if __name__ == '__main__':
     data = get_trend_data('大数据')
-    print(len(data))
-    t_min = 9999999
-    t_max = 0
-    for key, value in data.items():
-        for a in value:
-            x = int(a)
-            t_max = max(t_max, x)
-            t_min = min(t_min, x)
-    print(t_min, t_max)
+    print(data)
+    a = []
+    for key, dict in data.items():
+        sum = 0
+        for year, num in dict.items():
+            sum += num
+        a.append((sum, key))
+    a.sort(reverse=True)
+    print(a)
