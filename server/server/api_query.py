@@ -16,6 +16,10 @@ def get_trend_data(field):
 
 
 if __name__ == '__main__':
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Circle
+    import io
+    import cv2
     data = get_trend_data('大数据')
     print(data)
     a = []
@@ -23,6 +27,20 @@ if __name__ == '__main__':
         sum = 0
         for year, num in dict.items():
             sum += num
-        a.append((sum, key))
+        a.append((sum, key, dict))
     a.sort(reverse=True)
-    print(a)
+    data = a
+    print(data)
+    from hype_cycle import get_pos, get_XY
+    X, Y = get_XY()
+    figure = plt.figure(figsize=(18, 8))
+    plt.plot(X, Y)
+    for x in data[:20]:
+        vector = []
+        for year, num in x[2].items():
+            vector.append(num)
+        pos = get_pos(vector)
+        print(pos)
+        plt.text(pos[0][0] - 0.002, pos[0][1] - 0.002, 'o')
+        plt.annotate(s=x[1], xy=(pos[0][0], pos[0][1]), xytext=(pos[0][0] + 0.05, pos[0][1]), arrowprops={'arrowstyle': '->'})
+    plt.show()
